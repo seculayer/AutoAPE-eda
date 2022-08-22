@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "eda"
+version = "1.0.0"
+description = ""
+authors = ["Jin Kim <jin.kim@seculayer.com>"]
+include = ["conf"]
+
+[tool.poetry.dependencies]
+python = "^3.7, <3.11"
+ujson = "^5.3.0"
+numpy = "^1.21"
+pycmmn = { git = "https://ssdlc-bitbucket.seculayer.com:8443/scm/slaism/autoape-pycmmn.git", rev = "main" }
+
+[tool.poetry.dev-dependencies]
+black = "^22"
+isort = "^5.10.1"
+pytest = "^7.1.1"
+mypy = "^0.942"
+hypothesis = "^6.43.3"
+pytest-xdist = { extras = ["psutil"], version = "^2.5.0" }
+pytest-cov = "^3.0.0"
+prospector = { extras = [
+    "with_mypy",
+    "with_vulture",
+    "with_bandit",
+], version = "^1.7.7" }
+coverage = "^6.3.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --failed-first -n auto"
+testpaths = ["tests"]
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "88"
