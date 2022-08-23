@@ -7,12 +7,17 @@
 ######################################################################################
 
 APP_PATH=/eyeCloudAI/app/ape
-####
-export PYTHONPATH=$PYTHONPATH:$APP_PATH/eda/lib:$APP_PATH/eda
-export PYTHONPATH=$PYTHONPATH:$APP_PATH/pycmmn/lib:$APP_PATH/pycmmn
+
+if [ -x "${APP_PATH}/eda/.venv/bin/python3" ]; then
+  PYTHON_BIN="${APP_PATH}/eda/.venv/bin/python3"
+else
+  PYTHON_BIN="$(command -v python3)"
+  export PYTHONPATH=$PYTHONPATH:$APP_PATH/eda/lib:$APP_PATH/eda
+  export PYTHONPATH=$PYTHONPATH:$APP_PATH/pycmmn/lib:$APP_PATH/pycmmn
+fi
 
 KEY=${1}
 TASK_IDX=${2}
 JOB_TYPE=${3}
 
-/usr/local/bin/python3.7 -m eda.EDARunner ${KEY} ${TASK_IDX} ${JOB_TYPE}
+$PYTHON_BIN -m eda.EDARunner ${KEY} ${TASK_IDX} ${JOB_TYPE}
