@@ -556,10 +556,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 [[package]]
 name = "pycmmn"
 version = "1.0.0"
-description = """
-    SecuLayer Inc. AutoML
-    Project Module : PYCMMN
-"""
+description = "AutoML: Python Common Module"
 category = "main"
 optional = false
 python-versions = "^3.7, <3.11"
@@ -580,7 +577,7 @@ ujson = "^5.2.0"
 type = "git"
 url = "https://ssdlc-bitbucket.seculayer.com:8443/scm/slaism/autoape-pycmmn.git"
 reference = "main"
-resolved_reference = "6f72187262a216ab03507dacef40441de7acffcf"
+resolved_reference = "daedd5ff0d780beb409f80894b19de17b33f1cae"
 
 [[package]]
 name = "pycodestyle"
