@@ -570,7 +570,6 @@ paramiko = "^2.10.3"
 psutil = "^5.9.0"
 pycryptodome = "^3.14.1"
 requests = "^2.27.1"
-scp = "^0.14.4"
 ujson = "^5.2.0"
 
 [package.source]
@@ -827,14 +826,6 @@ python-versions = "*"
 
 [package.dependencies]
 astroid = ">=1.4"
-
-[[package]]
-name = "scp"
-version = "0.14.4"
-description = "scp module for paramiko"
-category = "main"
-optional = false
-python-versions = "*"
 
 [package.dependencies]
 paramiko = "*"
@@ -1552,10 +1543,6 @@ requests = [
 ]
 requirements-detector = [
     {file = "requirements-detector-0.7.tar.gz", hash = "sha256:0d1e13e61ed243f9c3c86e6cbb19980bcb3a0e0619cde2ec1f3af70fdbee6f7b"},
-]
-scp = [
-    {file = "scp-0.14.4-py2.py3-none-any.whl", hash = "sha256:29ddaafbfba60793a8a779694c97d8c150d365668a4ef67616c515b80a69ef2f"},
-    {file = "scp-0.14.4.tar.gz", hash = "sha256:54699b92cb68ae34b5928c48a888eab9722a212502cba89aa795bd56597505bd"},
 ]
 setoptconf-tmp = [
     {file = "setoptconf-tmp-0.3.1.tar.gz", hash = "sha256:e0480addd11347ba52f762f3c4d8afa3e10ad0affbc53e3ffddc0ca5f27d5778"},
