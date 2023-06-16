@@ -41,20 +41,10 @@ class Constants(metaclass=Singleton):
     LOG_LEVEL = _CONFIG.get("log_level", "INFO")
     LOG_NAME = _CONFIG.get("log_name", "ExploratoryDataAnalysis")
 
-    # Hosts
-    STORAGE_SVC = _CONFIG.get("storage_svc")
-    STORAGE_SFTP_PORT = _CONFIG.get("storage_sftp_port")
-
-    MRMS_SVC = _CONFIG.get("mrms_svc")
-    MRMS_SFTP_PORT = _CONFIG.get("mrms_sftp_port")
-    MRMS_REST_PORT = int(_CONFIG.get("mrms_rest_port"))
-
-    SSH_USER = _CONFIG.get("ssh_username")
-    SSH_PASSWD = _CONFIG.get("ssh_password")
-
     # DATASET FORMAT
-    DATASET_FORMAT_TABLE = "1"
+    DATASET_FORMAT_TEXT = "1"
     DATASET_FORMAT_IMAGE = "2"
+    DATASET_FORMAT_TABLE = "3"
 
     # TABLE FIELD TYPE
     FIELD_TYPE_NULL = "null"
@@ -62,16 +52,14 @@ class Constants(metaclass=Singleton):
     FIELD_TYPE_FLOAT = "float"
     FIELD_TYPE_STRING = "string"
     FIELD_TYPE_IMAGE = "image"
+    FIELD_TYPE_DATE = "date"
+    FIELD_TYPE_LIST = "list"
 
     JOB_TYPE_CHIEF = "chief"
     JOB_TYPE_WORKER = "worker"
-    DISTRIBUTE_INSTANCES_TABLE = int(_CONFIG.get("text_distribute_instances", "100000"))
-    DISTRIBUTE_INSTANCES_IMAGE = int(_CONFIG.get("image_distribute_instances", "1024")) * 1024 * 1024
 
     # FIELD TAG
     TAG_CATEGORY = "Categorical"
-
-    WORKER_WAITING_TIMEOUT = int(_CONFIG.get("worker_waiting_timeout", "86400"))  # 1 day
 
 
 if __name__ == '__main__':

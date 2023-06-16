@@ -21,51 +21,8 @@
         <value>INFO</value>
         <description>[INFO, DEBUG, WARN, ERROR, CRITICAL]</description>
     </property>
-    <!-- hosts -->
     <property>
-        <name>storage_svc</name>
-        <!--        <value>ape-storage-svc</value>-->
-        <value>10.1.35.72</value>
-    </property>
-    <property>
-        <name>storage_sftp_port</name>
-        <!--        <value>10122</value>-->
-        <value>30122</value>
-    </property>
-    <property>
-        <name>mrms_svc</name>
-        <!--        <value>mrms-svc</value>-->
-        <value>10.1.35.72</value>
-    </property>
-    <property>
-        <name>mrms_sftp_port</name>
-        <!--        <value>9100</value>-->
-        <value>30022</value>
-    </property>
-    <property>
-        <name>mrms_rest_port</name>
-        <!--        <value>9200</value>-->
-        <value>31920</value>
-    </property>
-    <property>
-        <name>ssh_username</name>
-        <value>HE12RmzKHQtH3bL7tTRqCg==</value>
-    </property>
-    <property>
-        <name>ssh_password</name>
-        <value>jTf6XrqcYX1SAhv9JUPq+w==</value>
-    </property>
-    <property>
-        <name>text_distribute_instances</name>
-        <value>100000</value>
-    </property>
-    <property>
-        <name>image_distribute_instances</name>
-        <value>1024</value>
-        <description>MB</description>
-    </property>
-    <property>
-        <name>worker_waiting_timeout</name>
+        <name>waiting_timeout</name>
         <value>86400</value>
         <description>seconds</description>
     </property>
