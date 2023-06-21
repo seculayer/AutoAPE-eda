@@ -11,7 +11,8 @@ from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
 
 class Unique(FunctionsAbstract):
     AVAILABLE_DTYPE_LIST = [
-        Constants.FIELD_TYPE_INT
+        Constants.FIELD_TYPE_INT,
+        Constants.FIELD_TYPE_STRING
     ]
     KEY_NAME = "unique"
     N_CYCLE = 1
