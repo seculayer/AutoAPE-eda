@@ -46,7 +46,7 @@ class Constants(metaclass=Singleton):
     DATASET_FORMAT_IMAGE = "2"
     DATASET_FORMAT_TABLE = "3"
 
-    # TABLE FIELD TYPE
+    # FIELD TYPE
     FIELD_TYPE_NULL = "null"
     FIELD_TYPE_INT = "int"
     FIELD_TYPE_FLOAT = "float"
