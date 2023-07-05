@@ -5,7 +5,7 @@ from eda.common.Constants import Constants
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
 
 
-class ClassName(FunctionsAbstract):
+class TemplateExample(FunctionsAbstract):
     """
         AVAILABLE_DTYPE_LIST : list
             사용 가능한 Field Type 추가, Constant 클래스 내에서 선택

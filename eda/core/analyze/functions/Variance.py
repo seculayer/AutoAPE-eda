@@ -53,5 +53,6 @@ class Variance(FunctionsAbstract):
             return {}
         else:
             return {
-                self.KEY_NAME: self.variance
+                self.KEY_NAME: self.variance,
+                "std_dev": float(math.sqrt(self.variance))
             }
