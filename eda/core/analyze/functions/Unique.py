@@ -26,7 +26,7 @@ class Unique(FunctionsAbstract):
 
     def global_calc(self, workers_meta_list: List[Dict]) -> None:
         for meta_statistics in workers_meta_list:
-            local_unique = meta_statistics.get("statistics", {}).get(self.KEY_NAME).get(self.KEY_NAME)
+            local_unique = meta_statistics.get("statistics", {}).get(self.KEY_NAME, {}).get(self.KEY_NAME, {})
             for _key in local_unique.keys():
                 if self.unique_dict.__contains__(_key):
                     self.unique_dict[_key] += local_unique[_key]
