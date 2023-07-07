@@ -37,24 +37,19 @@ class Unique(FunctionsAbstract):
         self._check_category()
 
     def local_calc(self, val: Union[str, np.array], meta_statistics: Dict) -> None:
-        if self._is_category:
-            if not self.unique_dict.__contains__(val):
-                self.unique_dict[val] = 1
-                self.unique_count += 1
-            else:
-                self.unique_dict[val] += 1
-
-            self._check_category()
+        if not self.unique_dict.__contains__(val):
+            self.unique_dict[val] = 1
+            self.unique_count += 1
+        else:
+            self.unique_dict[val] += 1
 
     def local_to_dict(self) -> Dict:
-        if self._is_category:
-            return {
-                self.KEY_NAME: {
-                    self.KEY_NAME: self.unique_dict,
-                    "unique_count": self.unique_count
-                }
+        return {
+            self.KEY_NAME: {
+                self.KEY_NAME: self.unique_dict,
+                "unique_count": self.unique_count
             }
-        return {}
+        }
 
     def global_to_dict(self) -> Dict:
         if self._is_category:
