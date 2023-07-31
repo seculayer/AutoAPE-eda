@@ -38,7 +38,7 @@ class MinLength(FunctionsAbstract):
 		}
 
 	def global_to_dict(self) -> Dict:
-		if self.rst_val == float('-inf'):
+		if self.rst_val == float('inf'):
 			return {}
 		else:
 			return {
