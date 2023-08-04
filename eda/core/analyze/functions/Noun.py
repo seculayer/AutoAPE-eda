@@ -5,12 +5,12 @@
 
 from typing import Dict, List, Union
 import numpy as np
+import nltk
 
 from eda.common.Constants import Constants
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
 from eda.core.analyze.functions.Word import BasicTokenizer
 
-import nltk
 
 class Noun(FunctionsAbstract):
     """
@@ -50,10 +50,7 @@ class Noun(FunctionsAbstract):
         """
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__(self.KEY_NAME):
-                    break
-                local_word: Dict = statistics.get(self.KEY_NAME)
+                local_word: Dict = meta_statistics.get("statistics", {})[self.KEY_NAME]
                 if self.word_dict.get('noun') is None:
                     self.word_dict['noun'] = []
                     self.word_dict['noun'].extend(local_word)
@@ -74,10 +71,14 @@ class Noun(FunctionsAbstract):
         word_list = self.tokenizer.tokenize(val)
         tokens_tag = nltk.pos_tag(word_list)
         noun_list: List = list()
-        for word, pos in tokens_tag:
-            if 'NN' in pos:
-                if word not in noun_list:
-                    noun_list.append(word)
+        append = noun_list.append
+        list(map(lambda n: append(n[0]) if n[0] not in noun_list else None, filter(lambda x: 'NN' in x[1], tokens_tag)))
+        # list(map(lambda n : noun_list.append([0]) if n[0] not in noun_list else None, filter(lambda x : 'NN' in x[1], tokens_tag)))
+
+        # for word, pos in tokens_tag:
+        #     if 'NN' in pos:
+        #         if word not in noun_list:
+        #             noun_list.append(word)
         self.word_list.extend(noun_list)
 
     def local_to_dict(self) -> Dict:
@@ -86,12 +87,9 @@ class Noun(FunctionsAbstract):
             해당 함수는 local 계산 결과를 반환할 때 사용
         :return: dict
         """
-        if self.word_list is None:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.word_list
-            }
+        return {
+            self.KEY_NAME: self.word_list
+        }
 
     def global_to_dict(self) -> Dict:
         """
@@ -99,9 +97,6 @@ class Noun(FunctionsAbstract):
             해당 함수는 global 계산 결과를 반환할 때 사용
         :return: dict
         """
-        if self.word_dict is None:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.word_dict['noun']
-            }
+        return {
+            self.KEY_NAME: self.word_dict['noun']
+        }

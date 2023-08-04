@@ -31,11 +31,8 @@ class Date(FunctionsAbstract):
         _end = None
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__(self.KEY_NAME):
-                    break
-                _start = statistics.get(self.KEY_NAME).get("start")
-                _end = statistics.get(self.KEY_NAME).get("end")
+                _start = meta_statistics.get("statistics", {}).get(self.KEY_NAME)["start"]
+                _end = meta_statistics.get("statistics", {}).get(self.KEY_NAME)["end"]
             except Exception as e:
                 raise e
 

@@ -45,17 +45,21 @@ class ValueRatio(FunctionsAbstract):
             worker 들의 meta 데이터(local 계산 결과 등) 정보가 들어 있는 List
         :return: None
         """
+
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__("unique"):
-                    self.ratio_dict = {}
-                    break
-                self.unique_dict = statistics.get("unique").get("unique")
-                for _key in self.unique_dict.keys():
-                    self.ratio_dict[_key] = round(self.unique_dict[_key] / self.num_instances, 2)
+                local_unique = meta_statistics.get("statistics", {})["unique"]["unique"]
             except Exception as e:
                 raise e
+
+            for _key in local_unique.keys():
+                if self.unique_dict.__contains__(_key):
+                    self.unique_dict[_key] += local_unique[_key]
+                else:
+                    self.unique_dict[_key] = local_unique[_key]
+
+        for _key in self.unique_dict.keys():
+            self.ratio_dict[_key] = round(self.unique_dict[_key] / self.num_instances, 2)
 
     def local_calc(self, val: Union[str, np.array], meta_statistics: Dict) -> None:
         """
@@ -74,9 +78,6 @@ class ValueRatio(FunctionsAbstract):
         Global 계산 결과가 저장된 self.ratio_dict 변수를 self.KEY_NAME 변수와 dict 형태로 저장 후 반환
         :return: dict
         """
-        if not self.ratio_dict:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.ratio_dict
-            }
+        return {
+            self.KEY_NAME: self.ratio_dict
+        }

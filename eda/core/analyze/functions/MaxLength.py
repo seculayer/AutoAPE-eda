@@ -4,6 +4,7 @@ import numpy as np
 from eda.common.Constants import Constants
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
 
+
 class MaxLength(FunctionsAbstract):
 	AVAILABLE_DTYPE_LIST = [
 		Constants.FIELD_TYPE_STRING
@@ -18,10 +19,7 @@ class MaxLength(FunctionsAbstract):
 	def global_calc(self, workers_meta_list: List[Dict]) -> None:
 		for meta_statistics in workers_meta_list:
 			try:
-				statistics = meta_statistics.get("statistics", {})
-				if not statistics.__contains__(self.KEY_NAME):
-					break
-				local_max = statistics.get(self.KEY_NAME)
+				local_max = meta_statistics.get("statistics", {})[self.KEY_NAME]
 			except Exception as e:
 				raise e
 

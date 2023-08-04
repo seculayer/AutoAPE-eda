@@ -21,11 +21,7 @@ class Average(FunctionsAbstract):
         worker_sum = 0
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__("sum"):
-                    worker_sum = None
-                    break
-                worker_sum += statistics.get("sum")
+                worker_sum += meta_statistics.get("statistics", {})["sum"]
             except Exception as e:
                 raise e
 
@@ -39,9 +35,6 @@ class Average(FunctionsAbstract):
         return {}
 
     def global_to_dict(self) -> Dict:
-        if self.rst_val is not None:
-            return {
-                self.KEY_NAME: self.rst_val
-            }
-        else:
-            return {}
+        return {
+            self.KEY_NAME: self.rst_val
+        }

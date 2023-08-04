@@ -20,10 +20,7 @@ class Sum(FunctionsAbstract):
     def global_calc(self, workers_meta_list: List[Dict]) -> None:
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__(self.KEY_NAME):
-                    break
-                self.rst_val += statistics.get(self.KEY_NAME)
+                self.rst_val += meta_statistics.get("statistics", {})[self.KEY_NAME]
             except Exception as e:
                 raise e
 
@@ -36,9 +33,6 @@ class Sum(FunctionsAbstract):
         }
 
     def global_to_dict(self) -> Dict:
-        if self.rst_val is None:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.rst_val
-            }
+        return {
+            self.KEY_NAME: self.rst_val
+        }

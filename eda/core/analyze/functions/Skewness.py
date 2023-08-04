@@ -49,11 +49,7 @@ class Skewness(FunctionsAbstract):
         worker_sum = 0
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__("skew_diff"):
-                    worker_sum = None
-                    break
-                worker_sum += statistics.get("skew_diff")
+                worker_sum += meta_statistics.get("statistics", {})["skew_diff"]
             except Exception as e:
                 raise e
 
@@ -80,21 +76,15 @@ class Skewness(FunctionsAbstract):
         Local 계산 결과가 저장된 self.skew_diff 변수들을 "skew_diff"라는 key와 dict 형태로 저장 후 반환
         :return: dict
         """
-        if self.skew_diff is None:
-            return {}
-        else:
-            return {
-                "skew_diff": self.skew_diff
-            }
+        return {
+            "skew_diff": self.skew_diff
+        }
 
     def global_to_dict(self) -> Dict:
         """
         Global 계산 결과가 저장된 self.skewness 변수를 self.KEY_NAME 변수와 dict 형태로 저장 후 반환
         :return: dict
         """
-        if self.skewness is None:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.skewness
-            }
+        return {
+            self.KEY_NAME: self.skewness
+        }
