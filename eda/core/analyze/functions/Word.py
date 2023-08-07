@@ -21,43 +21,35 @@ class Word(FunctionsAbstract):
     def global_calc(self, workers_meta_list: List[Dict]) -> None:
         for meta_statistics in workers_meta_list:
             try:
-                statistics = meta_statistics.get("statistics", {})
-                if not statistics.__contains__(self.KEY_NAME):
-                    break
-                local_word: Dict = statistics.get(self.KEY_NAME)
-                if len(self.word_dict) == 0:
-                    self.word_dict = local_word
-                else:
-                    for _key in local_word.keys():
-                        if self.word_dict.__contains__(_key):
-                            self.word_dict[_key] += local_word[_key]
-                        else:
-                            self.word_dict[_key] = local_word[_key]
+                local_word: Dict = meta_statistics.get("statistics", {})[self.KEY_NAME]
             except Exception as e:
                 raise e
+
+            if len(self.word_dict) == 0:
+                self.word_dict = local_word
+            else:
+                for _key in local_word.keys():
+                    if self.word_dict.__contains__(_key):
+                        self.word_dict[_key] += local_word[_key]
+                    else:
+                        self.word_dict[_key] = local_word[_key]
 
     def local_calc(self, val: Union[str, np.array], meta_statistics: Dict) -> None:
         word_list = self.tokenizer.tokenize(val)
 
         for word in word_list:
-            if self.word_dict.get(word, None) is None:
+            if not self.word_dict.__contains__(word):
                 self.word_dict[word] = 1
             else:
                 self.word_dict[word] += 1
 
     def local_to_dict(self) -> Dict:
-        if len(self.word_dict) <= 0:
-            return {}
-        else:
-            return {self.KEY_NAME: self.word_dict}
+        return {self.KEY_NAME: self.word_dict}
 
     def global_to_dict(self) -> Dict:
-        if self.word_dict is None:
-            return {}
-        else:
-            return {
-                self.KEY_NAME: self.word_dict
-            }
+        return {
+            self.KEY_NAME: self.word_dict
+        }
 
 
 class BasicTokenizer(object):

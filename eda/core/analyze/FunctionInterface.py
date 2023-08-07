@@ -1,15 +1,14 @@
-from typing import List, Dict, Union
+import logging
 import os
+from typing import List, Dict, Union
 
 import eda.core.analyze.functions
-from eda.common.Common import Common
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
 from eda.core.analyze.functions.Word import Word
 from pycmmn.tools.DynamicClassLoader import DynamicClassLoader
 
 
 class FunctionInterface(object):
-    LOGGER = Common.LOGGER.getLogger()
 
     @staticmethod
     def get_func_name_list() -> List:
@@ -32,7 +31,7 @@ class FunctionInterface(object):
             func_cls = DynamicClassLoader.load_multi_packages(
                 packages=["eda.core.analyze.functions"],
                 class_nm=func_name,
-                logger=FunctionInterface.LOGGER
+                logger=logging.getLogger()  # FunctionInterface.LOGGER
             )
             rst_list.append(func_cls)
         return rst_list
