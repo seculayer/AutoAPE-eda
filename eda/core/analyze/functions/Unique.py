@@ -4,6 +4,7 @@
 # Powered by Seculayer © 2021 AI Service Model Team, R&D Center.
 from typing import Dict, List, Union
 import numpy as np
+import collections
 
 from eda.common.Constants import Constants
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
@@ -38,6 +39,8 @@ class Unique(FunctionsAbstract):
                     self.unique_dict[_key] = local_unique[_key]
 
         self.unique_count = len(self.unique_dict)
+        # key sorting
+        self.unique_dict = dict(collections.OrderedDict(sorted(self.unique_dict.items())))
 
         self._check_category()
 
@@ -62,10 +65,13 @@ class Unique(FunctionsAbstract):
                 self.KEY_NAME: {
                     self.KEY_NAME: self.unique_dict,
                     "unique_count": self.unique_count
-                }
+                },
+                "is_category": "True" if self.is_category() else "False"
             }
         else:
-            return {}
+            return {
+                   "is_category": "True" if self.is_category() else "False"
+            }
 
     def __str__(self):
         return str(self.unique_dict)

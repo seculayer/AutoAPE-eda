@@ -41,6 +41,11 @@ class APEPythonSetup(object):
         for file_name in file_names:
             if ext == os.path.splitext(file_name)[-1]:
                 res_file_names.append("%s/%s" % (directory, file_name))
+            if ext == "all":
+                if os.path.isdir("%s/%s" % (directory, file_name)):
+                    res_file_names.extend(APEPythonSetup.read_dir("%s/%s" % (directory, file_name), ext))
+                else:
+                    res_file_names.append("%s/%s" % (directory, file_name))
 
         return res_file_names
 
@@ -50,7 +55,7 @@ class APEPythonSetup(object):
 
     def get_additional_file(self) -> List[str]:
         file_list = APEPythonSetup.read_dir(
-                directory=APEPythonSetup.get_realpath(file=__file__) + "/" + self.module_nm + "/resources", ext=".json"
+                directory=APEPythonSetup.get_realpath(file=__file__) + "/" + self.module_nm + "/resources", ext="all"
         )
 
         return file_list
@@ -69,7 +74,7 @@ class APEPythonSetup(object):
             },
             python_requires='>3.7',
             package_data={
-                # self.module_nm: self.get_additional_file()
+                self.module_nm: self.get_additional_file()
             },
             install_requires=self.get_require_packages(),
             zip_safe=False,
