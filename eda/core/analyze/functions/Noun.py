@@ -80,6 +80,8 @@ class Noun(FunctionsAbstract):
         #         if word not in noun_list:
         #             noun_list.append(word)
         self.word_list.extend(noun_list)
+        # Duplicate removal
+        self.word_list = list(set(self.word_list))
 
     def local_to_dict(self) -> Dict:
         """
