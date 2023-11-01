@@ -48,6 +48,9 @@ class Constants(metaclass=Singleton):
     # FIELD TAG
     TAG_CATEGORY = "Categorical"
 
+    DATASET_META_RST_TYPE_ALL = "1"
+    DATASET_META_RST_TYPE_LABEL = "2"
+
 
 if __name__ == '__main__':
     print(Constants.FIELD_TYPE_NULL)

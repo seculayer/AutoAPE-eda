@@ -9,7 +9,7 @@ import nltk
 
 from eda.common.Constants import Constants
 from eda.core.analyze.FunctionsAbstract import FunctionsAbstract
-from eda.core.analyze.functions.Word import BasicTokenizer
+from eda.core.analyze.functions.monomial.Word import BasicTokenizer
 
 
 class Noun(FunctionsAbstract):
