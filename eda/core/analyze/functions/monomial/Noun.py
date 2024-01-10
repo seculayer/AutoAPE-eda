@@ -23,7 +23,7 @@ class Noun(FunctionsAbstract):
            global 계산과 local 계산 한 세트가 1 cycle
    """
     AVAILABLE_DTYPE_LIST = [
-        Constants.FIELD_TYPE_STRING
+        # Constants.FIELD_TYPE_STRING
     ]
     KEY_NAME = "noun"
     N_CYCLE = 1
